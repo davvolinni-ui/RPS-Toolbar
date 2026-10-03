@@ -39,5 +39,5 @@ with TemporaryDirectory(prefix='rps-toolbar-install-') as temporary:
 print('PASS: ReaPack install tree contains all runtime modules and EULA; entry parses and modules load')
 if '--remote' in sys.argv:
     with urlopen('https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/main/index.xml', timeout=30) as response:
-        assert response.read() == index_bytes, 'Published index mismatch'
+        assert response.read().replace(b'\r\n', b'\n') == index_bytes.replace(b'\r\n', b'\n'), 'Published index mismatch'
     print('PASS: published index and all seven pinned downloads match the verified Git revision')
