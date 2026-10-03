@@ -1,0 +1,4 @@
+tools/.deps/
+tools/isolated/
+tools/check.log
+**/__pycache__/
