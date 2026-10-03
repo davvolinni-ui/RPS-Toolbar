@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<index version="1" name="RPS Toolbar" commit="d789939ef3ffdee6a942605a4ec0db1b2670e564">
+  <category name="RPS Toolbar">
+    <reapack name="RPS Toolbar.lua" type="script" desc="RPS Toolbar - customizable icon launcher">
+      <metadata>
+        <link rel="website">https://forum.cockos.com/showthread.php?t=311768</link>
+        <link rel="website">https://github.com/davvolinni-ui/RPS-Toolbar</link>
+        <description>{\rtf1\ansi RPS Toolbar by Davvo. Requires ReaImGui 0.10 and JS_ReaScriptAPI. Install controlled apps separately. Read the included EULA.md before use.}</description>
+      </metadata>
+      <version name="0.3.0" author="Davvo" time="2026-10-03T08:08:22Z">
+        <changelog>Initial public ReaPack release.</changelog>
+        <source file="RPS Toolbar.lua" main="main">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/RPS%20Toolbar.lua</source>
+        <source file="src/app.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/app.lua</source>
+        <source file="src/icons.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/icons.lua</source>
+        <source file="src/launcher.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/launcher.lua</source>
+        <source file="src/order.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/order.lua</source>
+        <source file="src/theme.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/theme.lua</source>
+        <source file="EULA.md">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/EULA.md</source>
+      </version>
+    </reapack>
+  </category>
+</index>
