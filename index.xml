@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<index version="1" name="RPS Toolbar" commit="d789939ef3ffdee6a942605a4ec0db1b2670e564">
+<index version="1" name="RPS Toolbar" commit="7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9">
   <category name="RPS Toolbar">
     <reapack name="RPS Toolbar.lua" type="script" desc="RPS Toolbar - customizable icon launcher">
       <metadata>
@@ -16,6 +16,16 @@
         <source file="src/order.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/order.lua</source>
         <source file="src/theme.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/src/theme.lua</source>
         <source file="EULA.md">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/d789939ef3ffdee6a942605a4ec0db1b2670e564/EULA.md</source>
+      </version>
+      <version name="0.3.1" author="Davvo" time="2026-11-15T07:48:09Z">
+        <changelog>Fix Auto Detect swatch selection and color persistence. Simplify Appearance to five controls for visible toolbar colors.</changelog>
+        <source file="RPS Toolbar.lua" main="main">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/RPS%20Toolbar.lua</source>
+        <source file="src/app.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/src/app.lua</source>
+        <source file="src/icons.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/src/icons.lua</source>
+        <source file="src/launcher.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/src/launcher.lua</source>
+        <source file="src/order.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/src/order.lua</source>
+        <source file="src/theme.lua">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/src/theme.lua</source>
+        <source file="EULA.md">https://raw.githubusercontent.com/davvolinni-ui/RPS-Toolbar/7662cbf0f64035906ca9d46d8a5f36f5dbf84bd9/EULA.md</source>
       </version>
     </reapack>
   </category>
