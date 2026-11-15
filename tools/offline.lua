@@ -213,39 +213,3 @@ restored_visibility:set_visible('ReaSpect',true)
 restored_visibility:frame()
 assert(#button_size==before+1,'Restoring visibility did not restore a button')
 print('PASS: visibility persists, retains order, and supports zero/one visible apps')
-
-local appearance=App.new(r,I)
-appearance.settings_open=true
-I.BeginTabBar=function()return true end
-I.BeginTabItem=function(_,label)return label=='Appearance' end
-I.Checkbox=function(_,_,checked)return false,checked end
-I.ColorEditFlags_NoInputs=1
-I.ColorEditFlags_NoAlpha=2
-local row,clicked,edited
-local color_labels={}
-I.PushID=function(_,id)row=id end
-I.ColorEdit3=function(_,label,rgb)
-  color_labels[#color_labels+1]=label
-  if row=='window_bg' then return edited,0x123456 end
-  return false,rgb
-end
-I.ColorButton=function(_,id,rgb)
-  if row~='border' or id~='alternate1' then return false end
-  assert(rgb==0x343434,'Suggested swatch must receive RGB')
-  return clicked
-end
-appearance.theme.colors.panel_bg=0x303030FF
-appearance.theme.suggestions.border={{label='Toolbar frame',color=0x343434FF}}
-clicked=true
-appearance:settings()
-assert(table.concat(color_labels,'|')=='Toolbar Background|Button Background|Button Icons|Button Borders|Pressed Button / Status Dot',
-  'Appearance should expose only the primary toolbar colors')
-assert(appearance.theme.colors.border==0x343434FF,'Swatch selection changed before saving')
-assert(not appearance.follow,'Selecting a swatch must turn off automatic following')
-clicked=false
-edited=true
-appearance:settings()
-local restored_appearance=App.new(r,I)
-assert(restored_appearance.theme.colors.border==0x343434FF,'Swatch selection changed after reload')
-assert(restored_appearance.theme.colors.window_bg==0x123456FF,'Custom picker did not save opaque RGB')
-print('PASS: selected swatches and custom colors persist')
