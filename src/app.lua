@@ -5,9 +5,13 @@ local Icons = require('src.icons')
 local Order = require('src.order')
 local M = {}; M.__index = M
 local SECTION = 'RPS_Toolbar'
-local rows = {'window_bg','panel_bg','text','selected_text','accent','header_icon','folder_text','border'}
-local function widget(c) return ((c&255)<<24)|((c>>8)&0xFFFFFF) end
-local function rgba(c) return ((c&0xFFFFFF)<<8)|((c>>24)&255) end
+local color_rows = {
+  {'window_bg', 'Toolbar Background'},
+  {'panel_bg', 'Button Background'},
+  {'header_icon', 'Button Icons'},
+  {'border', 'Button Borders'},
+  {'accent', 'Pressed Button / Status Dot'},
+}
 function M.new(r,I)
   local self = setmetatable({r=r,I=I,ctx=I.CreateContext('RPS Toolbar'),open=true,settings_open=false}, M)
   self.theme = Theme.new(r)
@@ -106,14 +110,15 @@ function M:settings()
         end
         I.Separator(c)
         I.TextDisabled(c,'Custom colors turn off automatic theme following.')
-        for _,key in ipairs(rows) do
+        for _,row in ipairs(color_rows) do
+          local key,label=table.unpack(row)
           I.PushID(c,key)
           I.SetNextItemWidth(c,225)
-          local edited,color=I.ColorEdit4(c,Theme.LABELS[key],widget(self.theme.colors[key]),I.ColorEditFlags_NoAlpha|I.ColorEditFlags_NoInputs)
-          if edited then self.follow=false;Theme.set_color(r,self.theme,key,rgba(color));self:save() end
+          local edited,color=I.ColorEdit3(c,label,self.theme.colors[key]>>8,I.ColorEditFlags_NoInputs)
+          if edited then self.follow=false;Theme.set_color(r,self.theme,key,((color&0xFFFFFF)<<8)|255);self:save() end
           for n,choice in ipairs(self.theme.suggestions[key] or {}) do
             I.SameLine(c)
-            if I.ColorButton(c,'alternate'..n,widget(choice.color),I.ColorEditFlags_NoAlpha,20,20) then
+            if I.ColorButton(c,'alternate'..n,choice.color>>8,I.ColorEditFlags_NoAlpha,20,20) then
               self.follow=false;Theme.set_color(r,self.theme,key,choice.color);self:save()
             end
             if I.IsItemHovered(c) then I.SetTooltip(c,choice.label) end
@@ -191,7 +196,6 @@ function M:frame()
   self:check_startup()
   self:refresh_theme()
   self:refresh_running()
-  local colors=self.theme.colors
   local T={};Theme.apply(self.theme,T)
   for _,entry in ipairs({{I.Col_WindowBg,T.window},{I.Col_Text,T.text},{I.Col_Button,T.button},{I.Col_ButtonHovered,T.hover},{I.Col_ButtonActive,T.active},{I.Col_Border,T.border}}) do I.PushStyleColor(c,entry[1],entry[2]) end
   I.PushStyleVar(c,I.StyleVar_WindowPadding,4,4)

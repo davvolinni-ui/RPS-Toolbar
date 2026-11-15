@@ -14,7 +14,8 @@ from lupa.lua54 import LuaRuntime
 index_bytes = (root / 'index.xml').read_bytes()
 index = ET.fromstring(index_bytes)
 revision = index.get('commit')
-sources = index.findall('.//source')
+release = index.find('.//reapack/version[last()]')
+sources = release.findall('source')
 assert len(sources) == 7
 assert sum(s.get('main') == 'main' for s in sources) == 1
 assert {s.get('file') for s in sources} == {

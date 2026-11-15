@@ -1,5 +1,5 @@
 -- @description RPS Toolbar - ReaBrowse, ReaDrumXT, ReaRoll and ReaSpect launcher
--- @version 0.3.0
+-- @version 0.3.1
 -- @author Davvo
 -- @link Repository https://github.com/davvolinni-ui/RPS-Toolbar
 -- @link Contact and support https://forum.cockos.com/showthread.php?t=311768

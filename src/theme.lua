@@ -53,7 +53,7 @@ function M.ensure_contrast(state)
   return c
 end
 function M.set_color(host,state,key,color)
-  state.colors[key]=color; M.ensure_contrast(state); M.save(host,state); return state.colors[key]
+  state.colors[key]=color; M.save(host,state); return color
 end
 local function native(host,key,default,optional)
   local ok,value=pcall(host.GetThemeColor,key,0);if not ok or value==-1 then return optional and nil or default end
@@ -77,11 +77,11 @@ function M.save(host,state)
 end
 function M.new(host)
   local state={colors=copy(M.DEFAULT),suggestions={}}
+  M.ensure_contrast(state)
   for _,key in ipairs(M.KEYS)do
     state.colors[key]=tonumber(host.GetExtState(M.SECTION,"theme_"..key))or state.colors[key]
     local choices={};for part in (host.GetExtState(M.SECTION,"suggestions_"..key)or""):gmatch("[^;]+")do local label,value=part:match("^(.-)|(%d+)$");if label and value then choices[#choices+1]={label=label,color=tonumber(value)}end end;state.suggestions[key]=choices
   end
-  M.ensure_contrast(state)
   return state
 end
 function M.reset(host,state,preset)

@@ -1,5 +1,6 @@
 """Generate an immutable ReaPack release index from a committed revision."""
 from pathlib import Path
+import argparse
 from datetime import datetime, timezone
 import re
 import subprocess
@@ -12,6 +13,10 @@ SUPPORT = 'https://forum.cockos.com/showthread.php?t=311768'
 
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=ROOT, text=True).strip()
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--changelog', required=True, help='Release notes shown in ReaPack')
+args = parser.parse_args()
 
 revision = git('rev-parse', 'HEAD')
 entry = 'RPS Toolbar.lua'
@@ -36,7 +41,7 @@ if package is None:
     ET.SubElement(metadata, 'description').text = r'{\rtf1\ansi RPS Toolbar by Davvo. Requires ReaImGui 0.10 and JS_ReaScriptAPI. Install controlled apps separately. Read the included EULA.md before use.}'
 assert not any(v.get('name') == version for v in package.findall('version')), 'Version already indexed; increment @version before publishing another release'
 release = ET.SubElement(package, 'version', name=version, author='Davvo', time=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
-ET.SubElement(release, 'changelog').text = 'Initial public ReaPack release.'
+ET.SubElement(release, 'changelog').text = args.changelog
 for file in files:
     attrs = {'file': file}
     if file == entry:

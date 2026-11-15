@@ -58,4 +58,4 @@ REAPER, ReaImGui, JS_ReaScriptAPI, and the controlled apps are separate products
 
 Run `tools/run_offline.py` with Python and Lupa's Lua 5.4 runtime available in `tools/.deps` or on the Python path. This does not launch REAPER or modify projects. The optional `tools/check.lua` harness requires a separate isolated REAPER profile.
 
-`tools/build_index.py` creates a ReaPack index with source URLs pinned to a Git commit. Commit all release files first, then generate and commit `index.xml`; verify the pinned revision contains every listed file before pushing. Published versions should not be replaced with different files under the same version number.
+`tools/build_index.py --changelog "Release notes"` adds a version to the ReaPack index with source URLs pinned to a Git commit. Commit all release files first, then generate and commit `index.xml`. Run `tools/verify_package.py` before pushing. Use a new version number for each release.
